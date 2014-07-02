@@ -35,7 +35,7 @@ def upload_file():
             fno, tempfilename = tempfile.mkstemp()
             file.save(tempfilename)
             print "Converting file: ", tempfilename
-            subprocess.call(convert_command(tempfilename), shell=True)
+            subprocess.call(convert_command(tempfilename), shell=False)
             print "Conversion completed", tempfilename
             with open(tempfilename+".docx", "r") as cr:
                 content  = cr.read()
