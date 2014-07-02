@@ -28,7 +28,7 @@ def allowed_file(filename):
 
 @app.route('/conv', methods=['POST'])
 def upload_file():
-	content = ''
+    content = ''
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
