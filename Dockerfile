@@ -4,8 +4,12 @@ MAINTAINER lafolle <karan@humblepaper.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y 
-RUN apt-get install -y pandoc texlive-latex-base texlive-xetex latex-xcolor texlive-math-extra texlive-latex-extra texlive-fonts-extra curl wget git fontconfig make
+ENV http_proxy http://10.200.1.26:8080
+ENV https_proxy https://10.200.1.26:8080
+
+
+#RUN apt-get update -y 
+RUN apt-get install -y pandoc 
 
 # Install pip and Flask
 RUN apt-get install -y python-setuptools && easy_install pip
@@ -15,6 +19,6 @@ EXPOSE 8800
 
 RUN mkdir /conservice
 WORKDIR /conservice
-ADD . /conservice
+VOLUME . /conservice
 
 entrypoint ["python", "main.py"]
